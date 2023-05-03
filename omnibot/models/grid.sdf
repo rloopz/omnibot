@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <model name="grid">
+    <static>true</static>
+    <link name="grid_link">
+      <collision name="grid_collision">
+        <geometry>
+          <box>
+            <size>5 5 0.01</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>100</mu>
+              <mu2>50</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="grid_visual">
+        <geometry>
+          <box>
+            <size>5 5 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/White</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <pose frame="">0 0 0 0 0 0</pose>
+  </model>
+</sdf>
+

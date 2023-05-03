@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Load the URDF model of the robot -->
+  <param name="robot_description" textfile="$(find omnibot)/urdf/omnibot.gazebo" />
+
+  <!-- Launch Gazebo with an empty world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="gui" value="true" />
+  </include>
+
+  <!-- Spawn the robot in Gazebo -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model omnibot -x 0 -y 0 -z 0 -R 0 -P 0 -Y 0 -param robot_description" />
+
+  <!-- Load RViz with the grid -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find omnibot)/rviz/omnibot_grid.rviz"/>
+
+ <!-- Run python scripts -->
+  <node name="nodo_grid" pkg="omnibot" type="nodo_grid.py" output="screen" />
+  <node name="rviz_grid" pkg="omnibot" type="rviz_grid.py" output="screen" />
+  <node name="puente" pkg="omnibot" type="puente.py" output="screen" />
+  <node name="moveg" pkg="omnibot" type="moveg.py" output="screen" />
+  <!-- <node name="rgppm" pkg="omnibot" type="rgppm.py" output="screen" /> -->
+</launch>
+

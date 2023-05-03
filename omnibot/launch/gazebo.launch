@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load the world file -->
+  <arg name="world_file" default="$(find omnibot)/worlds/grid_world.world"/>
+  <param name="world_name" value="$(arg world_file)"/>
+
+  <!-- Start Gazebo -->
+  <node name="gazebo" pkg="gazebo_ros" type="gazebo" args="$(arg world_file)">
+    <env name="GAZEBO_MODEL_PATH" value="$(find omnibot)/models"/>
+    <env name="GAZEBO_RESOURCE_PATH" value="$(find omnibot)/worlds"/>
+  </node>
+
+  <!-- Start the interactive_markers plugin -->
+  <node name="interactive_markers" pkg="interactive_markers" type="interactive_marker_server" />
+
+</launch>
+
